@@ -1,16 +1,20 @@
 from web3 import Web3
-contractAddress = "0x19AEf98360E3b960E91c3B641B1C13FF209a0C97";
+
+#input contract address
+contractAddress = "";
 
 # Your private key here
 privateKey = "---";
 # Deployer (owner) of the contract
-ownerAddress = "0x86f41Fb061A3706F834665F2003caE43BA491996";
-receiptAddress = "0x35C6B73748272329cBf4ca0762F8765b70343914";
+ownerAddress = "";
+receiptAddress = "";
 strData = Web3.toBytes(hexstr=Web3.toHex(text=open('Epochtest.txt').read()))
 sendTokenId = 4;
 f = open("ROP_ABI.json", "r")
 contractABI = f.read();
-w3 = Web3(Web3.HTTPProvider('https://ropsten.infura.io/v3/b7affc0b71274946bc59749acb2adcc1'))
+
+##enter infura key here
+w3 = Web3(Web3.HTTPProvider('https://ropsten.infura.io/v3/'))
 contract = w3.eth.contract(address=contractAddress,abi=contractABI);
 
 estimateGas = contract.functions.safeTransferFrom(ownerAddress, receiptAddress, sendTokenId, strData).estimateGas();
